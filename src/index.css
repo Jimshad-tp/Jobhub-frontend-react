@@ -1,29 +1,29 @@
 /* common styling */
 
-.card{
+.card {
   box-shadow: 0 0 2px grey;
-
 }
-.authentication-form{
-width: 400px;
+.authentication-form {
+  width: 400px;
 }
-.card-title{
+.card-title {
   font-size: 1.5rem;
   font-weight: bold;
 }
-.normel-text{
+.normel-text {
   font-size: 1rem;
 }
 
 /* authentication pages */
 
 .authentication {
-  height:100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: black;
 }
-.primary-button{
+.primary-button {
   display: flex;
   justify-content: center;
   background-color: rgb(43, 255, 0);
@@ -31,12 +31,21 @@ width: 400px;
   width: 200px;
   border-radius: 10px;
 }
-.anchor{
+.anchor {
   margin-left: 140px;
 }
-.anchor:hover{
+.anchor:hover {
   text-decoration: underline;
 }
-body{
-  background-color: black;
+
+.spinner-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 }

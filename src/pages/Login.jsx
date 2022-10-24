@@ -4,14 +4,19 @@ import { Form, Input, Button} from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { hideLoading, showLoading } from "../redux/alertsSlice";
 
 
 function Login() {
+const dispatch = useDispatch()
   const navigate = useNavigate()
   const onFinish = async (values) => {
-   console.log("haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaai");
+
     try {
+      dispatch(showLoading())
       const response = await axios.post("/api/user/login", values);
+      dispatch(hideLoading());
     
       if (response.data.success) {
         toast.success(response.data.message);
@@ -23,6 +28,7 @@ function Login() {
               
     } catch (error) {
       console.log(error);
+      dispatch(hideLoading());
       toast.error("something went wrong");
     }
   };
