@@ -1,13 +1,42 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* common styling */
+
+.card{
+  box-shadow: 0 0 2px grey;
+
+}
+.authentication-form{
+width: 400px;
+}
+.card-title{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.normel-text{
+  font-size: 1rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* authentication pages */
+
+.authentication {
+  height:100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.primary-button{
+  display: flex;
+  justify-content: center;
+  background-color: rgb(43, 255, 0);
+  margin-left: 90px;
+  width: 200px;
+  border-radius: 10px;
+}
+.anchor{
+  margin-left: 140px;
+}
+.anchor:hover{
+  text-decoration: underline;
+}
+body{
+  background-color: black;
 }
