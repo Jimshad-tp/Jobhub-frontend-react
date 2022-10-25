@@ -6,28 +6,25 @@ function Home() {
   const getData = async () => {
     try {
       const response = await axios.post(
-        "/api/user/get-user-info-by-id",
-        {},
+        "/api/user/get-user-info-by-id",{},
         {
           headers: {
-            Autherization: "Baerer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
       );
+      console.log(response.data)
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getData();
 
-    return () => {};
+    getData();
   }, []);
 
-  return <Layout>
-
-  </Layout>
+  return <Layout></Layout>;
 }
 
 export default Home;

@@ -6,20 +6,20 @@
 }
 
 .sidebar {
-  background-color: rgb(147, 132, 146);
+  background-color: rgb(9, 0, 51);
   width: 250px;
   box-shadow: 0 0 2px grey;
   border-radius: 5px;
   height: 100vh;
 }
+
 .header {
   background-color: rgb(226, 208, 208);
   border-radius: 5px;
   box-shadow: 0 0 6px;
-
   margin-bottom: 20px;
   margin-left: 20px;
-  height: 10vh;
+  height: 7vh;
 }
 .body {
   border-radius: 5px;
@@ -29,4 +29,40 @@
 }
 .content {
   width: 100%;
+}
+.menu-item{
+  margin-top: 30px;
+  margin-left: 15px;
+  
+}
+.menu-item a{
+  color: rgb(206, 196, 196);
+  text-decoration: none;
+  font-size: 20px;
+  padding-left: 10px;
+}
+.menu-item i{
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+.text{
+  color: rgba(255, 255, 255, 0.936);
+  padding: 10%;
+
+}
+.active-menu-item{
+  color: white;
+  background-color: rgb(32, 32, 125);
+margin-right: 1rem;
+  border-radius: 5px;
+}
+.close-icon{
+  font-size: 2rem;
+
+
+}
+.anchor{
+  font-size: large;
+
 }
