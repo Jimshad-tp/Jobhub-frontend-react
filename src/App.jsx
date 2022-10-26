@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import PublicRoute from "./Components/PublicRoute";
 import Applicationform from "./pages/Applicationform";
+import Userlist from "./pages/admin/Userlist";
+import Applicationlist from "./pages/admin/Applicationlist";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -40,7 +42,22 @@ function App() {
               <Applicationform />
             </ProtectedRoute>
           }
-        />
+        />       
+        <Route
+          path="/admin/userslist"
+          element={
+            <ProtectedRoute>
+              <Userlist />
+            </ProtectedRoute>
+          }
+        /><Route
+        path="/admin/app-list"
+        element={
+          <ProtectedRoute>
+            <Applicationlist />
+          </ProtectedRoute>
+        }
+      />
       </Routes>
     </BrowserRouter>
   );

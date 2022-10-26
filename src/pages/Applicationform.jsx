@@ -56,7 +56,6 @@ function Applicationform() {
             <Form.Item label="Problem" name="problem">
               <Input placeholder="Problem" type="text" />
             </Form.Item>
-
             <Form.Item label="Uniqe about solution" name="uniqueSolution">
               <Input placeholder="Unique Solution" type="text" />
             </Form.Item>

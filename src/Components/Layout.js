@@ -13,8 +13,6 @@ function Layout({ children }) {
     try {
       const response = await axios.post("/api/user/form", values);
 
-
-
     } catch (error) {
       console.log(error)
     }
@@ -43,21 +41,26 @@ function Layout({ children }) {
 
   ];
 
-  const adminrMenu = [
+  const adminMenu = [
     {
       name: "Home",
       path: "/",
       icon: "ri-home-5-fill",
     },
     {
-      name: "Application form",
-      path: "/getform",
+      name: "User list",
+      path: "/admin/userslist",
+      icon: "ri-file-list-2-fill",
+    } , 
+    {
+      name: "Applications list",
+      path: "/admin/app-list",
       icon: "ri-file-list-2-fill",
     }
 
   ];
 
-  const menuToBeRendered = user?.isAdmin ? adminrMenu : userMenu
+  const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
 
   return (
     <div className="main">
@@ -72,7 +75,7 @@ function Layout({ children }) {
                 <Link to={menu.path}>{menu.name}</Link>
               </div>
             })}
-            <div className='d-flex menu-item' onClick={() => {
+            <div className='d-flex menu-item' onClick={(onFinish) => {
               localStorage.clear()
               navigate('/login')
             }}>
