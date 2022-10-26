@@ -10,7 +10,7 @@
   width: 250px;
   box-shadow: 0 0 2px grey;
   border-radius: 5px;
-  height: 100vh;
+  height: 120vh;
 }
 
 .header {
@@ -22,6 +22,12 @@
   height: 7vh;
 }
 .body {
+  border-radius: 5px;
+  box-shadow: 0 0 2px;
+  height: 88vh;
+  margin-left: 20px;
+}
+.bodyapp {
   border-radius: 5px;
   box-shadow: 0 0 2px;
   height: 88vh;
