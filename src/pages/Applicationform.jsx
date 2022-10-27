@@ -19,7 +19,7 @@ function Applicationform() {
       dispatch(hideLoading());
 
       if (response.data.success) {
-        console.log(response.data);
+
         toast.success(response.data.message);
     
       } else {

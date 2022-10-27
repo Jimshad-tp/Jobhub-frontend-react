@@ -1,24 +1,14 @@
 import React from "react";
 import Layout from "../Components/Layout";
-function showform() {
+import Formview from '../Components/Formview'
+function Showform() {
 
 
-    
   return (
-    <Layout>
-
-      <div className="container p-4">
-        <div className="appoinment-card p-4">
-<h5>hg;sefjgsog</h5>
-<h5>hg;sefjgsog</h5>
-<h5>hg;sefjgsog</h5>
-<h5>hg;sefjgsog</h5>
-
-        </div>
-      </div>
-
+    <Layout>     
+<Formview/>
     </Layout>
   );
 }
 
-export default showform;
+export default Showform;

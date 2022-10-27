@@ -12,6 +12,8 @@ function Userlist() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
+
+
   const getUserData = async () => {
     try {
       dispatch(showLoading());
@@ -31,11 +33,11 @@ function Userlist() {
     }
   };
 
-  const applicationApprove = async (record, status) => {
+  const changeUserStatus = async (record, status) => {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "/api/admin/app-approve",
+        "/api/admin/change-user-status",
         { _id: record._id, status: status },
         {
           headers: {
@@ -85,7 +87,7 @@ function Userlist() {
           {record.status === "active" && (
             <span
               className="span"
-              onClick={() => applicationApprove(record, "blocked")}
+              onClick={() => changeUserStatus(record, "blocked")}
             >
               Block
             </span>
@@ -93,7 +95,7 @@ function Userlist() {
           {record.status === "blocked" && (
             <span
               className="span"
-              onClick={() => applicationApprove(record, "active")}
+              onClick={() => changeUserStatus(record, "active")}
             >
               Active
             </span>

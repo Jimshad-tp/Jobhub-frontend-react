@@ -25,9 +25,11 @@
   display: flex;
   justify-content: space-between;
  
-
 }
-
+.cursor{
+  cursor: pointer;
+  text-anchor: end;
+}
 /* authentication pages */
 
 .authentication {
@@ -76,4 +78,11 @@
 box-shadow: 0 0 2px;
 border-radius: 2px;
 border-color: black;
+}
+.site-card-border-less-wrapper {
+  padding: 30px;
+  background: #c0c0c0;
+  box-shadow: 0 0 6px;
+
+  
 }

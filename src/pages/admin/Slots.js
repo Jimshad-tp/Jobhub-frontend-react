@@ -8,6 +8,10 @@ import axios from "axios";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import toast from "react-hot-toast";
 
+
+
+
+
 function Slots() {
   const [slot, setSlots] = useState([]);
   const dispatch = useDispatch();
@@ -72,26 +76,22 @@ function Slots() {
           </Form>
         </div>
       </div>
-
+{/* 
       <div className="slotadd">
-
         {slot.map((slot, index) => (
           <div className="slot-box" onClick={handleClick}>
             <div className="slot-form-card p-2">
-
               <tr>
                 <h5 className="td">{slot.section}</h5>
                 <h5 className="td justify-contant-center">{slot.no}</h5>
              </tr>
-
             </div>
-
-
-
-
           </div>
         ))}
-      </div>
+      </div> */}
+
+
+
     </Layout>
   );
 }

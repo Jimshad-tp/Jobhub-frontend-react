@@ -68,7 +68,7 @@ function App() {
         </ProtectedRoute>
       }
     /><Route
-    path="/viewapplication"
+    path="/viewapps"
     element={
       <ProtectedRoute>
         <Showform />

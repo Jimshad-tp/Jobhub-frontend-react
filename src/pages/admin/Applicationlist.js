@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
 import Layout from "../../Components/Layout";
-import axios from 'axios';
-import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { Table, Tag } from "antd";
 
-
 function Applicationlist() {
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
   const [apps, setApps] = useState([]);
   const getApplications = async () => {
     try {
@@ -19,30 +19,48 @@ function Applicationlist() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      
+
       dispatch(hideLoading());
       if (response.data.success) {
         setApps([...response.data.data]);
-        console.log(apps,"hkhewprhqapirhpi3r")
+        console.log(apps, "hkhewprhqapirhpi3r");
       }
     } catch (error) {
       dispatch(hideLoading());
       toast.error("something went wrong");
     }
   };
-  const applicationApprove = async (record, status) => {
+  const changeFormStatus = async (record, status) => {
+    try {
+      const response = await axios.post(
+        "/api/admin/change-form-status",
+        { _id: record._id,  status: status },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(hideLoading())
+      if(response.data.success){
+      getApplications()
+        toast.success(response.data.message);
 
+      }
+    } catch (error) {
+      dispatch(hideLoading())
+      toast.error("something went wrong");
+    }
   };
   useEffect(() => {
-
-    getApplications()
-
-  },[])
+    getApplications();
+  }, []);
   const columns = [
     {
       title: "name",
       dataIndex: "name",
     },
+   
     {
       title: "Company name",
       dataIndex: "companyname",
@@ -54,11 +72,13 @@ function Applicationlist() {
     {
       title: "Address",
       dataIndex: "address",
-    }, {
+    },
+    {
       title: "Mobile",
       dataIndex: "phone",
     },
-    , {
+    ,
+    {
       title: "status",
       dataIndex: "status",
     },
@@ -67,20 +87,20 @@ function Applicationlist() {
       title: "Action",
       render: (text, record) => (
         <div className="d-flex">
-          {record.status === "active" && (
+          {record.status === "pending" && (
             <span
-              className="span"
-              onClick={() => applicationApprove(record, "blocked")}
+              className="cursor"
+              onClick={() => changeFormStatus(record, "approved")}
             >
-              Block
+              Approve
             </span>
           )}
-          {record.status === "blocked" && (
+          {record.status === "approved" && (
             <span
-              className="span"
-              onClick={() => applicationApprove(record, "active")}
+              className="cursor"
+              onClick={() => changeFormStatus(record, "blocked")}
             >
-              Active
+              Block
             </span>
           )}
         </div>
@@ -93,7 +113,7 @@ function Applicationlist() {
       <h1 className="pageheader p-3">Applications</h1>
       <Table columns={columns} dataSource={apps} />
     </Layout>
-  )
+  );
 }
 
-export default Applicationlist
+export default Applicationlist;

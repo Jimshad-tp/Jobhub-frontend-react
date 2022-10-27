@@ -31,7 +31,7 @@ function Layout({ children }) {
     },
     {
       name: "View Application",
-      path: "/viewapplication",
+      path: "/viewapps",
       icon: "ri-list-unordered",
     },
     {
