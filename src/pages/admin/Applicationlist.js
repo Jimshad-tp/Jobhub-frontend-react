@@ -1,43 +1,44 @@
 import React from 'react'
 import Layout from "../../Components/Layout";
 import axios from 'axios';
-import {useState,useEffect} from 'react'
-import {useDispatch} from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import toast from "react-hot-toast";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { Table, Tag } from "antd";
 
 
 function Applicationlist() {
-const dispatch = useDispatch()
-const [apps, setApps] = useState([]);
-    const getApplications = async () => {
-        try {
-          dispatch(showLoading());
-          const response = await axios.get("/api/admin/get-all-apps", {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          });
-          dispatch(hideLoading());
-    console.log(response.data)
-          if (response.data.success) {
-            setApps(response.data.data);
-          }
-        } catch (error) {
-          dispatch(hideLoading());
-          toast.error("something went wrong");
-        }
-      };
-      const applicationApprove = async (record, status) => {
-       
-      };
-useEffect(() => {
-  
-getApplications()
- 
-}, [])
-const columns = [
+  const dispatch = useDispatch()
+  const [apps, setApps] = useState([]);
+  const getApplications = async () => {
+    try {
+      dispatch(showLoading());
+      const response = await axios.get("/api/admin/get-all-apps", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      
+      dispatch(hideLoading());
+      if (response.data.success) {
+        setApps([...response.data.data]);
+        console.log(apps,"hkhewprhqapirhpi3r")
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      toast.error("something went wrong");
+    }
+  };
+  const applicationApprove = async (record, status) => {
+
+  };
+  useEffect(() => {
+
+    getApplications()
+
+  },[])
+  const columns = [
     {
       title: "name",
       dataIndex: "name",
@@ -47,20 +48,20 @@ const columns = [
       dataIndex: "companyname",
     },
     {
-        title: "Problem",
-        dataIndex: "problem",
-      },
+      title: "Problem",
+      dataIndex: "problem",
+    },
     {
       title: "Address",
       dataIndex: "address",
     }, {
-        title: "Mobile",
-        dataIndex: "phone",
-      },
-      , {
-        title: "status",
-        dataIndex: "status",
-      },
+      title: "Mobile",
+      dataIndex: "phone",
+    },
+    , {
+      title: "status",
+      dataIndex: "status",
+    },
 
     {
       title: "Action",
@@ -88,8 +89,8 @@ const columns = [
   ];
 
   return (
-<Layout>
-<h1 className="pageheader p-3">Applications</h1>
+    <Layout>
+      <h1 className="pageheader p-3">Applications</h1>
       <Table columns={columns} dataSource={apps} />
     </Layout>
   )

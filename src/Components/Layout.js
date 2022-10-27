@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+
 import "../layout.css";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useSelector } from "react-redux";
-import { Form, Input, Button } from "antd";
+
 
 function Layout({ children }) {
   const { user } = useSelector((state) => state.user)
@@ -11,8 +11,9 @@ function Layout({ children }) {
   const navigate = useNavigate()
   const onFinish = async (values) => {
     try {
+      
       const response = await axios.post("/api/user/form", values);
-
+  
     } catch (error) {
       console.log(error)
     }
@@ -56,7 +57,13 @@ function Layout({ children }) {
       name: "Applications list",
       path: "/admin/app-list",
       icon: "ri-file-list-2-fill",
+    },
+    {
+      name: "Slots",
+      path: "/admin/slots",
+      icon: "ri-bookmark-fill",
     }
+
 
   ];
 
@@ -89,8 +96,8 @@ function Layout({ children }) {
 
       <div className="content">
         <div className="header">
-          <i className="ri-close-circle-fill close-icon"></i>
-          <div className="d-flex align-items-center">
+ 
+          <div className="d-flex align-items-center P-5">
             <Link className="anchor" to='/profile' >{user?.name.toUpperCase()}</Link>
           </div>
         </div>

@@ -75,3 +75,8 @@ margin-right: 1rem;
 .span{
   cursor: pointer;
 }
+.slotadd{
+  width: fit-content;
+padding-left: 5%;
+padding-top: 5%;
+}

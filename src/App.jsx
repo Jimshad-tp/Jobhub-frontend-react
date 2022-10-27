@@ -13,6 +13,8 @@ import PublicRoute from "./Components/PublicRoute";
 import Applicationform from "./pages/Applicationform";
 import Userlist from "./pages/admin/Userlist";
 import Applicationlist from "./pages/admin/Applicationlist";
+import Slots from './pages/admin/Slots'
+import Showform from "./pages/Showform";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -50,14 +52,29 @@ function App() {
               <Userlist />
             </ProtectedRoute>
           }
-        /><Route
+        />
+        <Route
         path="/admin/app-list"
         element={
           <ProtectedRoute>
             <Applicationlist />
           </ProtectedRoute>
         }
-      />
+      /><Route
+      path="/admin/slots"
+      element={
+        <ProtectedRoute>
+          <Slots />
+        </ProtectedRoute>
+      }
+    /><Route
+    path="/viewapplication"
+    element={
+      <ProtectedRoute>
+        <Showform />
+      </ProtectedRoute>
+    }
+  />
       </Routes>
     </BrowserRouter>
   );

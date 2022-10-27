@@ -6,7 +6,13 @@
 .authentication-form {
   width: 400px;
 }
-
+.slot-box{
+  width:100px;
+  height: 100px;
+  background-color: rgb(84, 200, 230);
+  box-shadow: 0 0 6px;
+  margin: 8px;
+}
 
 .card-title {
   font-size: 1.5rem;
@@ -14,6 +20,12 @@
 }
 .normel-text {
   font-size: 1rem;
+}
+.slotadd{
+  display: flex;
+  justify-content: space-between;
+ 
+
 }
 
 /* authentication pages */
@@ -56,4 +68,12 @@
   left: 0;
   z-index: 9999;
 
+}
+.appoinment-card {
+  background-color: rgb(235, 235, 235);
+  width: 40%;
+  height: 50%;
+box-shadow: 0 0 2px;
+border-radius: 2px;
+border-color: black;
 }
