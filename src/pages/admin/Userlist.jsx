@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { Table, Tag } from "antd";
 import { useNavigate } from "react-router-dom";
 
+ 
 function Userlist() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -78,6 +79,8 @@ function Userlist() {
     {
       title: "Status",
       dataIndex: "status",
+      render:(text,record) => <h4 className="badge bg-primary">{record.status}</h4>
+
     },
 
     {
@@ -85,8 +88,8 @@ function Userlist() {
       render: (text, record) => (
         <div className="d-flex">
           {record.status === "active" && (
-            <span
-              className="span"
+            <span 
+              className="badge bg-danger"
               onClick={() => changeUserStatus(record, "blocked")}
             >
               Block
@@ -94,7 +97,7 @@ function Userlist() {
           )}
           {record.status === "blocked" && (
             <span
-              className="span"
+              className="badge bg-success"
               onClick={() => changeUserStatus(record, "active")}
             >
               Active
@@ -109,6 +112,7 @@ function Userlist() {
     <Layout>
       <h1 className="pageheader p-3">Users list</h1>
       <Table columns={columns} dataSource={users} />
+     
     </Layout>
   );
 }

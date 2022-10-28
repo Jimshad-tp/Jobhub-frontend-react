@@ -81,6 +81,8 @@ function Applicationlist() {
     {
       title: "status",
       dataIndex: "status",
+      render:(text,record) => <h4 className="badge bg-primary">{record.status}</h4>
+
     },
 
     {
@@ -89,7 +91,7 @@ function Applicationlist() {
         <div className="d-flex">
           {record.status === "pending" && (
             <span
-              className="cursor"
+              className="badge bg-success"
               onClick={() => changeFormStatus(record, "approved")}
             >
               Approve
@@ -97,7 +99,7 @@ function Applicationlist() {
           )}
           {record.status === "approved" && (
             <span
-              className="cursor"
+              className="badge bg-danger"
               onClick={() => changeFormStatus(record, "blocked")}
             >
               Block
