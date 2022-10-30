@@ -5,16 +5,14 @@ import Layout from "../../Components/Layout";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Table, Tag } from "antd";
+import { Table } from "antd";
 import { useNavigate } from "react-router-dom";
 
- 
+
 function Userlist() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
-
-
   const getUserData = async () => {
     try {
       dispatch(showLoading());
@@ -24,7 +22,6 @@ function Userlist() {
         },
       });
       dispatch(hideLoading());
-
       if (response.data.success) {
         setUsers(response.data.data);
       }
@@ -33,7 +30,6 @@ function Userlist() {
       toast.error("something went wrong");
     }
   };
-
   const changeUserStatus = async (record, status) => {
     try {
       dispatch(showLoading());
@@ -48,11 +44,9 @@ function Userlist() {
       );
 
       dispatch(hideLoading());
-
       if (response.data.success) {
-
         toast.success(response.data.message);
-        // setUsers(response.data.data);
+        window.location.reload();
       }
     } catch (error) {
       dispatch(hideLoading());
@@ -79,29 +73,35 @@ function Userlist() {
     {
       title: "Status",
       dataIndex: "status",
-      render:(text,record) => <h4 className="badge bg-primary">{record.status}</h4>
-
+      render: (text, record) => (
+        <h5>
+          <span class="badge bg-success">{record.status}</span>
+        </h5>
+      ),
     },
-
     {
       title: "Action",
       render: (text, record) => (
         <div className="d-flex">
           {record.status === "active" && (
-            <span 
-              className="badge bg-danger"
-              onClick={() => changeUserStatus(record, "blocked")}
-            >
-              Block
-            </span>
+            <h5>
+              <span
+                class="badge bg-danger"
+                onClick={() => changeUserStatus(record, "blocked")}
+              >
+                Block
+              </span>
+            </h5>
           )}
           {record.status === "blocked" && (
+            <h5>
             <span
-              className="badge bg-success"
+              class="badge bg-danger"
               onClick={() => changeUserStatus(record, "active")}
             >
               Active
-            </span>
+              </span>
+            </h5>
           )}
         </div>
       ),
@@ -112,7 +112,6 @@ function Userlist() {
     <Layout>
       <h1 className="pageheader p-3">Users list</h1>
       <Table columns={columns} dataSource={users} />
-     
     </Layout>
   );
 }

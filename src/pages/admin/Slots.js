@@ -10,8 +10,6 @@ import toast from "react-hot-toast";
 import { Table, Tag } from "antd";
 import Slotform from "../../Components/Slotfrom";
 
-
-
 function Slots() {
   const [slot, setSlots] = useState([]);
   const dispatch = useDispatch();
@@ -20,18 +18,14 @@ function Slots() {
       dispatch(showLoading());
       const response = await axios.post("/api/admin/slot", values);
       dispatch(hideLoading());
-
       if (response.data.success) {
         toast.success(response.data.message);
-     
-     
+        window.location.reload(); 
       }
     } catch (error) {
       toast.error("something went wrong");
     }
   };
-
-
 
   return (
     <Layout>

@@ -8,19 +8,23 @@ import { useDispatch } from "react-redux";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 import { useNavigate } from "react-router-dom";
 
-
 function Applicationform() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onFinish = async (values) => {
     try {
       dispatch(showLoading());
-      const response = await axios.post("/api/user/form", values);
+      const response = await axios.post("/api/user/form", values,{
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        }
+      });
       dispatch(hideLoading());
 
       if (response.data.success) {
 
         toast.success(response.data.message);
+        window.location.reload();
     
       } else {
         toast.error(response.data.message);
@@ -52,16 +56,15 @@ function Applicationform() {
             <Form.Item label="Mobile" name="phone">
               <Input placeholder="Mobile" type="number" />
             </Form.Item>
-            <Form.Item label="Company name" name="companyname">
-              <Input placeholder="Company name" type="text" />
+            <Form.Item label="Subject" name="subject">
+              <Input placeholder="Subject" type="text" />
             </Form.Item>
-            <Form.Item label="Problem" name="problem">
-              <Input placeholder="Problem" type="text" />
+            <Form.Item label="Qualifiaction" name="qualification">
+              <Input placeholder="Qualification" type="text" />
             </Form.Item>
-            <Form.Item label="Uniqe about solution" name="uniqueSolution">
-              <Input placeholder="Unique Solution" type="text" />
+            <Form.Item label="Experience" name="experience">
+              <Input placeholder="Experience" type="text" />
             </Form.Item>
-
             <Button className="primary-button" htmlType="submit">
               SUBMIT
             </Button>

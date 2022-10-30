@@ -25,8 +25,7 @@ function ProtectedRoute(props) {
         }
       );
       dispatch(hideLoading());
-      if (response.data.success) {
-       
+      if (response.data.success) {    
         dispatch(setUser(response.data.data));
       } else {
         localStorage.clear()

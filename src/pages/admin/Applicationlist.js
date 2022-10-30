@@ -8,7 +8,6 @@ import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { Table, Tag } from "antd";
 
 function Applicationlist() {
-
   const dispatch = useDispatch();
   const [apps, setApps] = useState([]);
   const getApplications = async () => {
@@ -19,11 +18,9 @@ function Applicationlist() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-
       dispatch(hideLoading());
       if (response.data.success) {
-        setApps([...response.data.data]);
-        console.log(apps, "hkhewprhqapirhpi3r");
+        setApps([...response.data.data]);    
       }
     } catch (error) {
       dispatch(hideLoading());
@@ -45,7 +42,7 @@ function Applicationlist() {
       if(response.data.success){
       getApplications()
         toast.success(response.data.message);
-
+        window.location.reload();
       }
     } catch (error) {
       dispatch(hideLoading())
@@ -57,17 +54,21 @@ function Applicationlist() {
   }, []);
   const columns = [
     {
-      title: "name",
+      title: "Name",
       dataIndex: "name",
     },
    
     {
-      title: "Company name",
-      dataIndex: "companyname",
+      title: "Subject",
+      dataIndex: "subject",
     },
     {
-      title: "Problem",
-      dataIndex: "problem",
+      title: "Qualification",
+      dataIndex: "qualification",
+    },
+    {
+      title: "Experience",
+      dataIndex: "experience",
     },
     {
       title: "Address",
@@ -79,38 +80,33 @@ function Applicationlist() {
     },
     ,
     {
-      title: "status",
+      title: "Status",
       dataIndex: "status",
-      render:(text,record) => <h4 className="badge bg-primary">{record.status}</h4>
-
+      render:(text,record) => <h5><span class="badge bg-warning">{record.status}</span></h5>
     },
-
     {
       title: "Action",
       render: (text, record) => (
         <div className="d-flex">
           {record.status === "pending" && (
-            <span
-              className="badge bg-success"
+            <h5><span class="badge bg-success"
               onClick={() => changeFormStatus(record, "approved")}
             >
               Approve
-            </span>
+              </span></h5>
           )}
           {record.status === "approved" && (
-            <span
-              className="badge bg-danger"
+            <h5><span class="badge bg-danger"
               onClick={() => changeFormStatus(record, "blocked")}
             >
               Block
-            </span>
+              </span></h5>
           )}
         </div>
       ),
     },
   ];
-
-  return (
+ return (
     <Layout>
       <h1 className="pageheader p-3">Applications</h1>
       <Table columns={columns} dataSource={apps} />

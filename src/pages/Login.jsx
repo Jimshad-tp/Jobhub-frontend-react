@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Form, Input, Button} from "antd";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,7 +11,6 @@ function Login() {
 const dispatch = useDispatch()
   const navigate = useNavigate()
   const onFinish = async (values) => {
-
     try {
       dispatch(showLoading())
       const response = await axios.post("/api/user/login", values);
@@ -21,7 +19,9 @@ const dispatch = useDispatch()
       if (response.data.success) {
         toast.success(response.data.message);
         localStorage.setItem('token', response.data.data)
+        
         navigate("/");
+        window.location.reload();
       } else {
         toast.error(response.data.message);
       }
@@ -38,8 +38,7 @@ const dispatch = useDispatch()
     <div className="authentication">
       <div className="authentication-form card p-2">
         <h1 className="card-title">Login</h1>
-        <Form layout="vertical" onFinish={onFinish}>
-     
+        <Form layout="vertical" onFinish={onFinish}>  
           <Form.Item label="Email" name="email">
             <Input placeholder="Email" type="email" />
           </Form.Item>
@@ -49,8 +48,7 @@ const dispatch = useDispatch()
           <Button className="primary-button" htmlType="submit">
             SUBMIT
           </Button>
-          <Link to="/register" className="anchor">
-           
+          <Link to="/register" className="anchor">         
             create a new account!
           </Link>
         </Form>

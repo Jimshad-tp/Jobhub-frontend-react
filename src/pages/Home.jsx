@@ -25,7 +25,9 @@ function Home() {
     getData();
   }, []);
 
-  return <Layout></Layout>;
+  return <Layout>
+    <h1>WELCOME</h1>
+  </Layout>;
 }
 
 export default Home;

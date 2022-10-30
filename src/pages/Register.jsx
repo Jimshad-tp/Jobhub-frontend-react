@@ -17,12 +17,11 @@ function Register() {
       } else {
         toast.error(response.data.message);
       }
-              
+             
     } catch (error) {
       toast.error("something went wrong");
     }
   };
-
   return (
     <div className="authentication">
       <div className="authentication-form card p-2">

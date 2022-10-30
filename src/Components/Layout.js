@@ -1,4 +1,3 @@
-
 import "../layout.css";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -34,11 +33,7 @@ function Layout({ children }) {
       path: "/viewapps",
       icon: "ri-list-unordered",
     },
-    {
-      name: "Profile",
-      path: "/profile",
-      icon: "ri-profile-fill",
-    },
+
 
   ];
 
@@ -63,8 +58,6 @@ function Layout({ children }) {
       path: "/admin/slots",
       icon: "ri-bookmark-fill",
     }
-
-
   ];
 
   const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
@@ -73,7 +66,7 @@ function Layout({ children }) {
     <div className="main">
       <div className="d-flex-layout">
         <div className='sidebar'>
-          <h1 className="text" > MEDICARE </h1>
+          <h1 className="text" > JOBHUB </h1>
           <div className="menu">
             {menuToBeRendered.map((menu) => {
               const isActive = location.pathname === menu.path
@@ -89,20 +82,15 @@ function Layout({ children }) {
               <i className='ri-logout-box-fill'></i>
               <Link> Logout</Link>
             </div>
-
           </div>
         </div>
       </div>
-
       <div className="content">
         <div className="header">
- 
           <div className="d-flex align-items-center P-5">
             <Link className="anchor" to='/profile' >{user?.name.toUpperCase()}</Link>
           </div>
         </div>
-
-
         <div className="body">
           {children}
         </div>

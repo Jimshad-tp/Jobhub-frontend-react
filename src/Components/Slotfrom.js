@@ -7,10 +7,13 @@ import { useEffect } from "react";
 import axios from "axios";
 import { showLoading, hideLoading } from "../redux/alertsSlice";
 import toast from "react-hot-toast";
+import { useNavigate } from 'react-router-dom'
 
 function Example() {
+  const navigate = useNavigate()
   const [show, setShow] = useState(false);
   const [slot, setSlots] = useState([]);
+  const [apps, setapps] = useState([]);
   const dispatch = useDispatch();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -29,8 +32,43 @@ function Example() {
     }
   };
 
+  const getApps = async () => {
+    try {
+      dispatch(showLoading());
+      const response = await axios.get("/api/admin/getapps");
+      dispatch(hideLoading());
+      if (response.data.success) {
+        setapps(response.data.data);
+        toast.success(response.data.message)
+
+      }
+    } catch (error) {
+      toast.error("something went wrong");
+    }
+  };
+
+  const slotBook = async (app, slot, status) => {
+    try {
+      dispatch(showLoading());
+      const response = await axios.post(
+        "/api/admin/slotbook",
+        { appId: app, slotId: slot, status: "booked" },
+        {}
+      );
+      dispatch(hideLoading());
+      toast.success(response.data.message)
+      window.location.reload();
+    } catch (error) {
+      dispatch(hideLoading());
+      toast.error('something went wrong')
+
+    }
+  };
+  console.log(slot);
+
   useEffect(() => {
     getSlot();
+    getApps();
   }, []);
 
   return (
@@ -46,36 +84,54 @@ function Example() {
       </thead>
       <tbody>
         {slot.map((slot, index) => {
-          <tr>
-            <td>{slot.section}</td>
-            <td>y8t8t</td>
-            <td>gxhdf</td>
-            <td>sds</td>
-            <td>
-              <>
-                <Button variant="primary" onClick={handleShow}>
-                  Book Slot
-                </Button>
+          return (
+            <tr>
+              <td>{index + 1}</td>
+              <td>{slot.section}</td>
+              <td>{slot.no}</td>
+              <td><h5><span class="badge bg-info text-dark">{slot.status}</span></h5></td>
+              <td>
+                <>
+                  {
+                    slot?.status == 'Booked' ? <h5><span class="badge bg-warning text-dark">Done</span></h5> :
 
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Book Slot</Modal.Title>
-                  </Modal.Header>
-                  {slot?.map((slot, index) => {
-                    <Modal.Body>{slot?.section}</Modal.Body>;
-                  })}
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                      Add
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
-              </>
-            </td>
-          </tr>;
+                      <Button variant="primary" onClick={handleShow}>
+                        Book Slot
+                      </Button>}
+
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Book Slot</Modal.Title>
+                    </Modal.Header>
+
+                    <Modal.Body>
+                      {apps.map((apps, index) => {
+                        return (
+                          <div
+                            className="box"
+                            onClick={() =>
+                              slotBook(apps._id, slot._id, slot.status)
+                            }
+                          >
+                            <span>{apps.name}</span>
+                            <br />
+                            <span>{apps.phone}</span>
+                          </div>
+                        );
+                      })}
+                    </Modal.Body>
+
+                    <Modal.Footer>
+
+                      <Button variant="primary" onClick={handleClose}>
+                        Close
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                </>
+              </td>
+            </tr>
+          );
         })}
       </tbody>
     </Table>
