@@ -22,7 +22,6 @@ function Applicationform() {
       dispatch(hideLoading());
 
       if (response.data.success) {
-
         toast.success(response.data.message);
         window.location.reload();
     

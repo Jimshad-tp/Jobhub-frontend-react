@@ -7,7 +7,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { Table } from "antd";
 import { useNavigate } from "react-router-dom";
-
+import moment from "moment"
 
 function Userlist() {
   const navigate = useNavigate();
@@ -69,12 +69,15 @@ function Userlist() {
     {
       title: "Date",
       dataIndex: "createdAt",
+      render:(text,record)=>{
+        return <span>{moment (record.createdAt).format('DD-MM-YYYY')}</span>
+      }
     },
     {
       title: "Status",
       dataIndex: "status",
       render: (text, record) => (
-        <h5>
+        <h5 style={{cursor:'pointer'}}>
           <span class="badge bg-success">{record.status}</span>
         </h5>
       ),
@@ -83,21 +86,21 @@ function Userlist() {
       title: "Action",
       render: (text, record) => (
         <div className="d-flex">
-          {record.status === "active" && (
-            <h5>
+          {record.status === "Active" && (
+            <h5 style={{cursor:'pointer'}}>
               <span
                 class="badge bg-danger"
-                onClick={() => changeUserStatus(record, "blocked")}
+                onClick={() => changeUserStatus(record, "Blocked")}
               >
                 Block
               </span>
             </h5>
           )}
-          {record.status === "blocked" && (
-            <h5>
+          {record.status === "Blocked" && (
+            <h5 style={{cursor:'pointer'}}>
             <span
               class="badge bg-danger"
-              onClick={() => changeUserStatus(record, "active")}
+              onClick={() => changeUserStatus(record, "Active")}
             >
               Active
               </span>

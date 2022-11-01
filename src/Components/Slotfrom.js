@@ -52,7 +52,7 @@ function Example() {
       dispatch(showLoading());
       const response = await axios.post(
         "/api/admin/slotbook",
-        { appId: app, slotId: slot, status: "booked" },
+        { appId: app, slotId: slot, status: "Booked" },
         {}
       );
       dispatch(hideLoading());
@@ -75,7 +75,7 @@ function Example() {
     <Table striped bordered hover size="sm">
       <thead>
         <tr>
-          <th>Index</th>
+          <th>Id</th>
           <th>Slot</th>
           <th>Slot status</th>
           <th>Booked Slot</th>
@@ -86,14 +86,14 @@ function Example() {
         {slot.map((slot, index) => {
           return (
             <tr>
-              <td>{index + 1}</td>
+              <td>{slot._id}</td>
               <td>{slot.section}</td>
               <td>{slot.no}</td>
-              <td><h5><span class="badge bg-info text-dark">{slot.status}</span></h5></td>
+              <td><h5 style={{cursor:'pointer'}}><span class="badge bg-info text-dark">{slot.status}</span></h5></td>
               <td>
                 <>
                   {
-                    slot?.status == 'Booked' ? <h5><span class="badge bg-warning text-dark">Done</span></h5> :
+                    slot?.status === 'Booked' ? <h5 style={{cursor:'pointer'}}><span class="badge bg-warning text-dark">Done</span></h5> :
 
                       <Button variant="primary" onClick={handleShow}>
                         Book Slot

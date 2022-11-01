@@ -90,8 +90,11 @@ border-color: black;
 }
 .site-card-border-less-wrapper {
   padding: 30px;
-  background: #c0c0c0;
+  background: #e8e8e8;
   box-shadow: 0 0 6px;
 
   
+}
+.h5 h4 h3 {
+  cursor: pointer;
 }

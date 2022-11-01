@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { Table, Tag } from "antd";
 
+
 function Applicationlist() {
   const dispatch = useDispatch();
   const [apps, setApps] = useState([]);
@@ -54,6 +55,11 @@ function Applicationlist() {
   }, []);
   const columns = [
     {
+      title: "App - Id",
+      dataIndex: '_id',
+    
+    },
+    {
       title: "Name",
       dataIndex: "name",
     },
@@ -82,22 +88,22 @@ function Applicationlist() {
     {
       title: "Status",
       dataIndex: "status",
-      render:(text,record) => <h5><span class="badge bg-warning">{record.status}</span></h5>
+      render:(text,record) => <h5 style={{cursor:'pointer'}}><span class="badge bg-warning">{record.status}</span></h5>
     },
     {
       title: "Action",
       render: (text, record) => (
         <div className="d-flex">
-          {record.status === "pending" && (
-            <h5><span class="badge bg-success"
-              onClick={() => changeFormStatus(record, "approved")}
+          {record.status === "Pending" && (
+            <h5 style={{cursor:'pointer'}}><span class="badge bg-success"
+              onClick={() => changeFormStatus(record, "Approved")}
             >
               Approve
               </span></h5>
           )}
-          {record.status === "approved" && (
-            <h5><span class="badge bg-danger"
-              onClick={() => changeFormStatus(record, "blocked")}
+          {record.status === "Approved" && (
+            <h5 style={{cursor:'pointer'}}><span class="badge bg-danger"
+              onClick={() => changeFormStatus(record, "Blocked")}
             >
               Block
               </span></h5>

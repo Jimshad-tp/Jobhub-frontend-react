@@ -45,6 +45,9 @@ const dispatch = useDispatch()
           <Form.Item label="Password" name="password">
             <Input placeholder="Password" type="password" />
             </Form.Item>
+            <Form.Item label="" name="status" value='active' >
+            <Input placeholder="" type="" hidden />
+            </Form.Item>
           <Button className="primary-button" htmlType="submit">
             SUBMIT
           </Button>
