@@ -88,7 +88,7 @@ function Layout({ children }) {
       <div className="content">
         <div className="header">
           <div className="d-flex align-items-center P-5">
-            <Link className="anchor" to='/profile' >{user?.name.toUpperCase()}</Link>
+            <Link className="anchor" to='/logout' >{user?.name.toUpperCase()}<p>{user?.time}</p></Link>
           </div>
         </div>
         <div className="body">
